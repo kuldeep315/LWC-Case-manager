@@ -1,0 +1,9 @@
+# Salesforce / SFDX
+.sfdx/
+node_modules/
+.DS_Store
+*.log
+.vscode/
+.idea/
+.trash/
+*.zip
