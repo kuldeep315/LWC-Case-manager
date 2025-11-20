@@ -1,0 +1,54 @@
+<template>
+    <lightning-card title="Case Manager" icon-name="standard:case">
+        <div class="slds-p-around_medium">
+
+            <div class="filters">
+                <lightning-input
+                    type="search"
+                    placeholder="Search subject or description..."
+                    value={searchKey}
+                    onchange={handleSearch}
+                    class="searchInput">
+                </lightning-input>
+
+                <lightning-combobox
+                    label="Status"
+                    placeholder="All"
+                    options={statusOptions}
+                    value={statusFilter}
+                    onchange={handleStatusChange}>
+                </lightning-combobox>
+
+                <lightning-combobox
+                    label="Priority"
+                    placeholder="All"
+                    options={priorityOptions}
+                    value={priorityFilter}
+                    onchange={handlePriorityChange}>
+                </lightning-combobox>
+
+                <lightning-input type="date" label="Start Date" value={startDate} onchange={handleStartDate}></lightning-input>
+                <lightning-input type="date" label="End Date" value={endDate} onchange={handleEndDate}></lightning-input>
+
+                <lightning-button variant="neutral" label="Clear" onclick={handleClear}></lightning-button>
+            </div>
+
+            <lightning-datatable
+                key-field="Id"
+                data={cases}
+                columns={columns}
+                onsort={handleSort}
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                hide-checkbox-column>
+            </lightning-datatable>
+
+            <div class="pagination slds-m-top_medium">
+                <lightning-button label="Previous" onclick={handlePrev} disabled={disablePrev}></lightning-button>
+                <span class="pageInfo">Page {pageNumber} • {totalRecords} records</span>
+                <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>
